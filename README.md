@@ -1,5 +1,3 @@
 # Работы по курсу "Алгоритмы и структуры данных"
 
-## Тема 1. [Сортировки](topic%20one%20-%20sorting):
-
-[Условия](topic%20one%20-%20sorting/README.md)
+## Тема 1. [Сортировки](topic%20one%20-%20sorting) - [Условия](topic%20one%20-%20sorting/README.md)
