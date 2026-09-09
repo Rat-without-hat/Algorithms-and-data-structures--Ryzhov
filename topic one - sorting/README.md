@@ -56,4 +56,4 @@
 | **Выходные данные** |
 | 4 4 3 2 1           |
 
-### [Решение](bubble_sort_C_D/C.cpp)
+### [Решение](bubble_sort_C_D/task_C/C.cpp)
