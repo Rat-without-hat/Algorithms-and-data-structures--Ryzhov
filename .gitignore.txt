@@ -1,0 +1,17 @@
+.vscode
+topic%20one%20-%20sorting/selection_sort_A/A
+topic%20one%20-%20sorting/selection_sort_A/A.dSYM
+topic%20one%20-%20sorting/insertion_sort_B/B
+topic%20one%20-%20sorting/insertion_sort_B/B.dSYM
+topic%20one%20-%20sorting/bubble_sort_C_D/task_C/C
+topic%20one%20-%20sorting/bubble_sort_C_D/task_C/C.dSYM
+topic%20one%20-%20sorting/bubble_sort_C_D/task_D/D
+topic%20one%20-%20sorting/bubble_sort_C_D/task_D/D.dSYM
+topic%20one%20-%20sorting/merge_sort_E/.venv
+topic%20one%20-%20sorting/merge_sort_E/.idea
+topic%20one%20-%20sorting/quick_sort_F/.venv
+topic%20one%20-%20sorting/quick_sort_F/.idea
+topic%20one%20-%20sorting/count_sort_G/G
+topic%20one%20-%20sorting/count_sort_G/G.dSYM
+topic%20one%20-%20sorting/point_sort_H/H
+topic%20one%20-%20sorting/point_sort_H/H.dSYM
