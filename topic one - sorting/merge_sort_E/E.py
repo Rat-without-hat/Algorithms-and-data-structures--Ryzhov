@@ -28,11 +28,13 @@ def merge_sort(source_list):
 
 len_list = int(input())
 
-source_list = input()
-if source_list != "":
-    res = merge_sort(list(map(int, [el for el in source_list.split(" ") if el != ""])))
+source_string = input()
+if source_string != "":
+    source_list = list(map(int, [el for el in source_string.split(" ") if el != ""]))
 else:
-    res = []
+    source_list = []
+
+source_list = merge_sort(source_list)
 
 for i in range(len_list):
-    print(res[i], end=" ")
+    print(source_list[i], end=" ")
