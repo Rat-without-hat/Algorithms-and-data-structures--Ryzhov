@@ -22,11 +22,8 @@ def quick_sort(source_list, left, right):
 
 len_list = int(input())
 
-source_string = input()
-if source_string != "":
-    source_list = list(map(int, [el for el in source_string.split(" ") if el != ""]))
-else:
-    source_list = []
+
+source_list = list(map(int, [el for el in input().split() if el != ""]))
 
 quick_sort(source_list, 0, len_list - 1)
 
