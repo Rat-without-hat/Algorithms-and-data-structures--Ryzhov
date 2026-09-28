@@ -7,9 +7,9 @@ void quick_sort(std::vector<int> & source_vector, int left, int right)
     if(left < right)
     {
         srand(time(0));
-        int val = source_vector[int(float(rand() / RAND_MAX) * (right - left) + left)];
         int l = left;
         int r = right;
+        int val = source_vector[int(float(rand() / RAND_MAX) * (r - l) + l)];
 
         while(r >= l)
         {
