@@ -29,7 +29,7 @@ class Stack:
 
 work_stack = Stack()
 
-while(1):
+while(True):
     input_data = input().strip().split()
 
     if input_data[0] == "size":
