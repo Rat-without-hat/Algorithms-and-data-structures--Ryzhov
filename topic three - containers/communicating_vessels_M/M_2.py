@@ -56,9 +56,4 @@ while(vol_water):
         ind_first_fill_section -= 1
 
 for i in range(amount_sections):
-    print(f"{list_vol_water_per_section[i]:.6f}")
-
-    
-
-
-    
+    print(f"{list_vol_water_per_section[i]:.6f}")   
