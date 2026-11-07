@@ -65,15 +65,8 @@ class Tree:
         return bool_exist
 
     """
-        Метод нахождение максимума в дереве
+        Метод нахождение максимума в поддереве
     """
-    def get_max(self):
-        max_val = None
-
-        if(not(self._root is None)):
-            max_val = self._get_max(self._root)
-
-        return max_val
 
     def _get_max(self, source_node):
         cur_node = source_node
@@ -84,31 +77,8 @@ class Tree:
         return cur_node.get_data()
 
     """
-        Метод нахождение минимума в дереве
-    """        
-    def get_min(self):
-        min_val = None
-
-        if(not(self._root is None)):
-            min_val = self._get_min(self._root)
-
-        return min_val
-
-    def _get_min(self, source_node):
-        cur_node = source_node
-
-        while(not(cur_node.get_left() is None)):
-            cur_node = cur_node.get_left()
-
-        return cur_node.get_data()
-
-    """
-        Метод удаления максимума в дереве
+        Метод удаления узла с максимальным значением в поддереве
     """  
-    def del_max(self):
-        self._root, del_bool = self._del_max(self._root)
-
-        return del_bool
 
     def _del_max(self, source_node):
         cur_node = source_node
@@ -123,30 +93,6 @@ class Tree:
         else:
             if(not(cur_node.get_left() is None)):
                 return cur_node.get_left() , True
-            else:
-                return None, True
-
-    """
-        Метод удаления минимума в дереве
-    """  
-    def del_min(self):
-        self._root, del_bool = self._del_min(self._root)
-
-        return del_bool
-
-    def _del_min(self, source_node):
-        cur_node = source_node
-
-        if(cur_node is None):
-            return None, False
-        
-        if(not(cur_node.get_left() is None)):
-            new_left, res_bool = self._del_min(cur_node.get_left())
-            cur_node.set_left(new_left)
-            return cur_node, res_bool
-        else:
-            if(not(cur_node.get_right() is None)):
-                return cur_node.get_right() , True
             else:
                 return None, True
     
