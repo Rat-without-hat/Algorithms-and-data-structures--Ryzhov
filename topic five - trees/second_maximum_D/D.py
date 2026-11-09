@@ -1,3 +1,5 @@
+from sys import stdin
+
 class Tree:
 
     """
@@ -5,27 +7,9 @@ class Tree:
     """
     class Node:
         def __init__(self, data = None):
-            self._data = data 
-            self._left = None
-            self._right = None
-
-        def get_data(self):
-            return self._data
-
-        def get_left(self):
-            return self._left
-
-        def get_right(self):
-            return self._right
-
-        def set_data(self, new_val):
-            self._data = new_val
-
-        def set_left(self, new_node):
-            self._left = new_node
-
-        def set_right(self, new_node):
-            self._right = new_node
+            self.data = data 
+            self.left = None
+            self.right = None
 
     def __init__(self):
         self._root = None
@@ -34,48 +18,26 @@ class Tree:
         Метод вставки новых узлов в дерево
     """
     def insert(self, new_val):
-        temp_Node = Tree.Node(new_val)
-
         if(self._root is None):
-            self._root = temp_Node
+            self._root = Tree.Node(new_val)
         else:
             cur_node = self._root
-            found = False
 
-            while(not(found)):
-                if(cur_node.get_data() > temp_Node.get_data()):
-                    if(cur_node.get_left() is None):
-                        cur_node.set_left(temp_Node)
-                        found = True
-                    else:
-                        cur_node = cur_node.get_left()
-                elif(cur_node.get_data() < temp_Node.get_data()):
-                    if(cur_node.get_right() is None):
-                        cur_node.set_right(temp_Node)
-                        found = True
-                    else:
-                        cur_node = cur_node.get_right()
+            while(True):
+                if(cur_node.data > new_val):
+                    if(cur_node.left is None):
+                        cur_node.left = Tree.Node(new_val)
+                        break
+                    
+                    cur_node = cur_node.left
+                elif(cur_node.data < new_val):
+                    if(cur_node.right is None):
+                        cur_node.right = Tree.Node(new_val)
+                        break
+                    
+                    cur_node = cur_node.right
                 else:
-                    found = True
-
-    """
-        Метод нахождение максимума в дереве
-    """
-    def get_max(self):
-        max_val = None
-
-        if(not(self._root is None)):
-            max_val = self._get_max(self._root)
-
-        return max_val
-
-    def _get_max(self, source_node):
-        cur_node = source_node
-
-        while(not(cur_node.get_right() is None)):
-            cur_node = cur_node.get_right()
-    
-        return cur_node.get_data()
+                    break
 
     """
         Метод нахождение второго максимума в дереве
@@ -86,176 +48,33 @@ class Tree:
         cur_node = self._root
         prev_node = None
 
-        while(True):
-            if(cur_node.get_right() is None):
-                cur_node = cur_node.get_left()
-                break
+        while(not(cur_node.right is None)):
             prev_node = cur_node
-            cur_node = cur_node.get_right()
+            cur_node = cur_node.right
 
-        if(cur_node == None):
-            second_max_val =  prev_node.get_data()
+        cur_node = cur_node.left
+
+        if(not(cur_node is None)):
+            while(not(cur_node.right is None)):
+                cur_node = cur_node.right
+
+        if((not(prev_node is None)) and (not(cur_node is None))):
+            second_max_val = max(prev_node.data, cur_node.data)
+        elif((prev_node is None) and (not(cur_node is None))):
+            second_max_val = cur_node.data
+        elif((not(prev_node is None)) and (cur_node is None)):
+            second_max_val = prev_node.data
         else:
-            while(not(cur_node.get_right() is None)):
-                cur_node = cur_node.get_right()
-
-            if(not(prev_node.get_left() is None)):
-                prev_node = prev_node.get_left()
-                while(not(prev_node.get_right() is None)):
-                    prev_node = prev_node.get_right()
-
-            second_max_val = max(prev_node.get_data(), cur_node.get_data())
+            second_max_val = self._root.data
 
         return second_max_val
-
-    """
-        Метод нахождение минимума в дереве
-    """        
-    def get_min(self):
-        min_val = None
-
-        if(not(self._root is None)):
-            min_val = self._get_min(self._root)
-
-        return min_val
-
-    def _get_min(self, source_node):
-        cur_node = source_node
-
-        while(not(cur_node.get_left() is None)):
-            cur_node = cur_node.get_left()
-
-        return cur_node.get_data()
-
-    """
-        Метод удаления максимума в дереве
-    """  
-    def del_max(self):
-        self._root, del_bool = self._del_max(self._root)
-
-        return del_bool
-
-    def _del_max(self, source_node):
-        cur_node = source_node
-
-        if(cur_node is None):
-            return None, False
-        
-        if(not(cur_node.get_right() is None)):
-            new_right, res_bool = self._del_max(cur_node.get_right())
-            cur_node.set_right(new_right)
-            return cur_node, res_bool
-        else:
-            if(not(cur_node.get_left() is None)):
-                return cur_node.get_left() , True
-            else:
-                return None, True
-
-    """
-        Метод удаления минимума в дереве
-    """  
-    def del_min(self):
-        self._root, del_bool = self._del_min(self._root)
-
-        return del_bool
-
-    def _del_min(self, source_node):
-        cur_node = source_node
-
-        if(cur_node is None):
-            return None, False
-        
-        if(not(cur_node.get_left() is None)):
-            new_left, res_bool = self._del_min(cur_node.get_left())
-            cur_node.set_left(new_left)
-            return cur_node, res_bool
-        else:
-            if(not(cur_node.get_right() is None)):
-                return cur_node.get_right() , True
-            else:
-                return None, True
-    
-    """
-        Метод поиска по ключу в дереве
-    """
-    def find(self, find_val):
-        found = False
-
-        if(not(self._root is None)):
-            cur_node = self._root
-
-            while((not(found)) and (not(cur_node is None))):
-                if(find_val < cur_node.get_data()):
-                    cur_node = cur_node.get_left()
-                elif(find_val > cur_node.get_data()):
-                    cur_node = cur_node.get_right()
-                else:
-                    found = True
-
-        return found
-
-    """
-        Метод удаления по ключу в дереве
-    """
-    def del_key(self, key_val):
-        self._root, del_bool = self._del_key(self._root, key_val)
-
-        return del_bool
-
-    def _del_key(self, source_node, key_val):
-        cur_node = source_node
-
-        if(cur_node is None):
-            return None, False
-        
-        if(key_val < cur_node.get_data()):
-            new_left, res_bool = self._del_key(cur_node.get_left(), key_val)
-            cur_node.set_left(new_left)
-            return cur_node, res_bool
-        elif(key_val > cur_node.get_data()):
-            new_right, res_bool = self._del_key(cur_node.get_right(), key_val)
-            cur_node.set_right(new_right)
-            return cur_node, res_bool
-        else:
-            if((cur_node.get_left() is None) and (cur_node.get_right() is None)):
-                return None, True
-            elif((not(cur_node.get_left() is None)) and (cur_node.get_right() is None)):
-                return cur_node.get_left(), True
-            elif((cur_node.get_left() is None) and (not(cur_node.get_right() is None))):
-                return cur_node.get_right() , True
-            else:
-                temp_max = self._get_max(cur_node.get_left())
-                new_left, temp_bool = self._del_max(cur_node.get_left())
-                cur_node.set_data(temp_max)
-                cur_node.set_left(new_left)
-                return cur_node, temp_bool
-
-    """
-        Метод вывода дерева
-    """
-    def print_tree(self):
-        if(not(self._root is None)):
-            self._print_node(self._root.get_left(), 1)
-
-            print(self._root.get_data())
-
-            self._print_node(self._root.get_right(), 1)
-
-    def _print_node(self, source_node, depth):
-        if(not(source_node is None)):
-            self._print_node(source_node.get_left(), depth + 1)
-
-            for _ in range(depth):
-                print(".", end="")
-            print(source_node.get_data())
-
-            self._print_node(source_node.get_right(), depth + 1)
 
 
 work_tree = Tree()
 
-list_val = list(map(int, input().split()))
-for i in range(len(list_val) - 1):
-    work_tree.insert(list_val[i])
+for el in map(int, input().split()):
+    if(el == 0):
+        break
+    work_tree.insert(el)
 
 print(work_tree.get_second_max())
