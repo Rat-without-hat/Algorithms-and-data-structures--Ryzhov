@@ -10,4 +10,6 @@
 
 ## Тема 5. [Двоичные деревья поиска](topic%20five%20-%20trees) - [Условия](topic%20five%20-%20trees/README.md)
 
+## Тема 6. [Невзвешенные графы, DFS и BFS](topic%20six%20-%20graphs,%20DFS%20and%20BFS) - [Условия](topic%20six%20-%20graphs,%20DFS%20and%20BFS/README.md)
+
 ## [Курсовая работа Рыжова и Баженовы](coursework) - [Пояснительная записка](coursework/explanatory_note/Kursovaya_rabota.docx)
